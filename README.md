@@ -1,4 +1,4 @@
-<a href="https://www.secureblockchains.com/"><img align="center" style="height:100px; width:100px;" src="https://github.com/SecureBlockChains/Assets/blob/master/Anchor.png" title="Boid" alt="Boid"></a>
+<a href="https://www.secureblockchains.com/"><img style=" margin-left:50px; height:100px; width:100px;" src="https://github.com/SecureBlockChains/Assets/blob/master/Anchor.png" title="Boid" alt="Boid"></a>
 
 # SBC-ETH
 
