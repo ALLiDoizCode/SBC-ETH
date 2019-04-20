@@ -1,80 +1,95 @@
-var keythereum = require("keythereum");
+const client = require("./Helpers/Client")
+const helper = require("./Helpers/Helper")
+
+const keythereum = require("keythereum");
 const EthereumTx = require('ethereumjs-tx')
-
-function decimalToHex(d, padding) {
-    var hex = Number(d).toString(16);
-    padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
-
-    while (hex.length < padding) {
-        hex = "0" + hex;
-    }
-
-    return hex;
-}
 
 function newAddress() {
     var dk = keythereum.create();
     var readableAddress = keythereum.privateKeyToAddress(dk.privateKey);
     return {
-        "public":readableAddress,
-        "private":dk.privateKey.toString('hex')
+        "public": readableAddress,
+        "private": dk.privateKey.toString('hex')
     }
 }
 
 function importAddress(private) {
     var readableAddress = keythereum.privateKeyToAddress(private);
     return {
-        "public":readableAddress,
-        "private":private
+        "public": readableAddress,
+        "private": private
     }
 }
 
-function toWei(value) {
-    return (value * 1000000000000000000).toString()
-}
-
-function fromWei(value) {
-    return (value / 1000000000000000000).toString()
-}
-
-function payment(privateKey,gasPrice,gasLimit,to,value,nonce) {
+function payment(privateKey, gasPrice, gasLimit, to, value, nonce) {
     const privateKeyBuffer = Buffer.from(privateKey, 'hex')
-    const wei = toWei(value)
+    const wei = helper.toWei(value)
     const txParams = {
-        nonce: "0x"+decimalToHex(nonce),
-        gasPrice: "0x"+decimalToHex(gasPrice), 
-        gasLimit: "0x"+decimalToHex(gasLimit),
-        to: to, 
-        value: "0x"+decimalToHex(wei),
-      }
-      
-      const tx = new EthereumTx(txParams)
-      tx.sign(privateKeyBuffer)
-      const serializedTx = tx.serialize()
-      console.log('---Serialized TX----')
-      console.log(tx.serialize().toString('hex'))
-      console.log('--------------------')
-      return serializedTx
+        nonce: "0x" + helper.decimalToHex(nonce),
+        gasPrice: "0x" + helper.decimalToHex(gasPrice),
+        gasLimit: "0x" + helper.decimalToHex(gasLimit),
+        to: to,
+        value: "0x" + helper.decimalToHex(wei),
+    }
+
+    const tx = new EthereumTx(txParams)
+    tx.sign(privateKeyBuffer)
+    const serializedTx = tx.serialize()
+    return serializedTx.toString('hex')
 }
 
-payment("ecd1b9db73defdf1a915eb31d2ad816b61ea158ad2db74cbc32393217b719ced","21000","1000000","0x9040ad56d49402d5fb31dc9a20253d411724b146",0.001,"0")
+function submit(tx) {
+    client.send(function (json) {
+        console.log(json)
+    }, client.router.submit, tx)
+}
 
-var ConvertBase = function (num) {
-    return {
-        from : function (baseFrom) {
-            return {
-                to : function (baseTo) {
-                    return parseInt(num, baseFrom).toString(baseTo);
-                }
-            };
-        }
-    };
-};
+function balance(address,callback) {
+    client.send(callback,client.router.balance, address)
+}
 
+function transactionCount(address) {
+    client.send(function (json) {
+        let count = helper.hex2dec(json.result)
+        console.log(count)
+    }, client.router.transactionCount, address)
+}
 
-ConvertBase.hex2dec = function (num) {
-    return ConvertBase(num).from(16).to(10);
-};
+function transaction(hash) {
+    client.send(function (json) {
+        console.log(json)
+    }, client.router.transaction, hash)
+}
 
-let result = ConvertBase.hex2dec("0x38d7ea4c68000"); // '11111000'
-console.log(fromWei(result))
+function currentBlock() {
+    client.send(function (json) {
+        let block = helper.hex2dec(json.result)
+        console.log(block)
+    }, client.router.currentBlock, "")
+}
+
+function history(address,start,end) {
+    client.send(function (json) {
+        console.log(json)
+    }, client.router.history, address+"/"+start+"/"+end)
+}
+
+/*var newWallet = newAddress()
+var oldWallet = importAddress("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e129cad24033194730")
+var tx = payment("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e129cad24033194730", "21", "10000000000", "0x92db85f920928429c3e519c3868329fe1fabeffc",1, "1")
+var result = helper.hex2dec("0x38d7ea4c68000")
+var ETH = helper.fromWei(1000000000000000000)
+var wei = helper.toWei(1)
+
+console.log(newWallet)
+console.log(oldWallet)
+console.log(tx)
+console.log(result)
+console.log(ETH)
+console.log(wei)*/
+
+balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
+    console.log(json)
+    let ETHBalance = helper.fromWei(json.result)
+    console.log(ETHBalance)
+})
