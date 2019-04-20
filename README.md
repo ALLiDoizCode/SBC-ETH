@@ -28,3 +28,16 @@ balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
 ```shell
 var tx = payment("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e129cad24033194730", "21", "10000000000", "0x92db85f920928429c3e519c3868329fe1fabeffc",1, "1")
 ```
+> Methods
+
+```shell
+newAddress()
+importAddress(private)
+payment(privateKey, gasPrice, gasLimit, to, value, nonce)
+submit(tx)
+balance(address,callback)
+transactionCount(address,callback)
+transaction(hash,callback)
+currentBlock(callback)
+history(address,start,end,callback)
+```
