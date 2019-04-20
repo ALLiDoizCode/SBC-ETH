@@ -22,7 +22,7 @@ var oldWallet = importAddress("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e12
 ```javascript
 balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
     console.log(json)
-    let ETHBalance = helper.fromWei(json.result)
+    let ETHBalance = ETH.util.fromWei(json.result)
     console.log(ETHBalance)
 })
 ```
