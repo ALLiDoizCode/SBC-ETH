@@ -37,7 +37,7 @@ var tx = payment("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e129cad240331947
 
 ```javascript
 var ethAmount = ETH.util.fromWei(1000000000000000000)
-var wei = ETH.util.toWei(1000000000000000000)
+var wei = ETH.util.toWei(1)
 var number = ETH.util.hex2dec(0x531587)
 var hex = ETH.util.decimalToHex(1000000000000000000)
 ```
