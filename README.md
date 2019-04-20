@@ -28,6 +28,16 @@ balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
 ```shell
 var tx = payment("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e129cad24033194730", "21", "10000000000", "0x92db85f920928429c3e519c3868329fe1fabeffc",1, "1")
 ```
+
+> utility
+
+```code
+var ethAmount = ETH.util.fromWei(1000000000000000000)
+var wei = ETH.util.toWei(1000000000000000000)
+var number = ETH.util.hex2dec(0x531587)
+var hex = ETH.util.decimalToHex(1000000000000000000)
+```
+
 ### Methods
 
 ```shell

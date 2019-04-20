@@ -4,7 +4,7 @@ const keythereum = require("keythereum");
 const EthereumTx = require('ethereumjs-tx');
 
 var exports = module.exports = {};
-
+exports.util = helper
 exports.newAddress = function() {
     var dk = keythereum.create();
     var readableAddress = keythereum.privateKeyToAddress(dk.privateKey);
