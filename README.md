@@ -9,7 +9,11 @@
 
 ### Install
 
-> npm install sbc-eth
+```
+Insure you have your SSH keys added to yout github account before installing
+```
+
+> npm install -S SecureBlockChains/SBC-ETH
 
 ### Examples
 
