@@ -57,9 +57,7 @@ function payment(privateKey,gasPrice,gasLimit,to,value,nonce) {
       return serializedTx
 }
 
-//var account = newAddress()
-//console.log(account)
-/*payment(account.private,"1000","1000",account.public,1,"15")*/
+payment("ecd1b9db73defdf1a915eb31d2ad816b61ea158ad2db74cbc32393217b719ced","21000","1000000","0x9040ad56d49402d5fb31dc9a20253d411724b146",0.001,"0")
 
 var ConvertBase = function (num) {
     return {
@@ -78,14 +76,5 @@ ConvertBase.hex2dec = function (num) {
     return ConvertBase(num).from(16).to(10);
 };
 
-let result = ConvertBase.hex2dec("0x15ff4ac530946050249d"); // '11111000'
-var eth = fromWei(result)
-console.log(eth)
-
-var wei = toWei(eth)
-
-console.log(decimalToHex(wei))
-
-let result2 = ConvertBase.hex2dec("0x"+decimalToHex(wei)); // '11111000'
-var eth2 = fromWei(result2)
-console.log(eth2)
+let result = ConvertBase.hex2dec("0x38d7ea4c68000"); // '11111000'
+console.log(fromWei(result))
