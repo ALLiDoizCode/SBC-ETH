@@ -17,7 +17,7 @@ console.log(wei)*/
     let ETHBalance = helper.fromWei(json.result)
     console.log(ETHBalance)
 })*/
-<a href="https://www.boid.com/"><img src="https://raw.githubusercontent.com/Boid-John/eos-airdrops/master/logos/BoidLogo-lg.png" title="Boid" alt="Boid"></a>
+<a href="https://www.secureblockchains.com/"><img src="https://github.com/SecureBlockChains/Assets/blob/master/Anchor.png" title="Boid" alt="Boid"></a>
 
 <p align="center">
     <a href="https://t.me/Boidcom_official">
