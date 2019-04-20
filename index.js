@@ -1,10 +1,11 @@
-const client = require("./Helpers/Client")
-const helper = require("./Helpers/Helper")
-
+const client = require("./Helpers/Client");
+const helper = require("./Helpers/Helper");
 const keythereum = require("keythereum");
-const EthereumTx = require('ethereumjs-tx')
+const EthereumTx = require('ethereumjs-tx');
 
-function newAddress() {
+var exports = module.exports = {};
+
+exports.newAddress = function() {
     var dk = keythereum.create();
     var readableAddress = keythereum.privateKeyToAddress(dk.privateKey);
     return {
@@ -13,7 +14,7 @@ function newAddress() {
     }
 }
 
-function importAddress(private) {
+exports.importAddress = function(private) {
     var readableAddress = keythereum.privateKeyToAddress(private);
     return {
         "public": readableAddress,
@@ -21,7 +22,7 @@ function importAddress(private) {
     }
 }
 
-function payment(privateKey, gasPrice, gasLimit, to, value, nonce) {
+exports.payment = function(privateKey, gasPrice, gasLimit, to, value, nonce) {
     const privateKeyBuffer = Buffer.from(privateKey, 'hex')
     const wei = helper.toWei(value)
     const txParams = {
@@ -38,40 +39,30 @@ function payment(privateKey, gasPrice, gasLimit, to, value, nonce) {
     return serializedTx.toString('hex')
 }
 
-function submit(tx) {
+exports.submit = function(tx) {
     client.send(function (json) {
         console.log(json)
     }, client.router.submit, tx)
 }
 
-function balance(address,callback) {
+exports.balance = function(address,callback) {
     client.send(callback,client.router.balance, address)
 }
 
-function transactionCount(address) {
-    client.send(function (json) {
-        let count = helper.hex2dec(json.result)
-        console.log(count)
-    }, client.router.transactionCount, address)
+exports.transactionCount = function(address,callback) {
+    client.send(callback,client.router.transactionCount, address)
 }
 
-function transaction(hash) {
-    client.send(function (json) {
-        console.log(json)
-    }, client.router.transaction, hash)
+exports.transaction = function(hash,callback) {
+    client.send(callback,client.router.transaction, hash)
 }
 
-function currentBlock() {
-    client.send(function (json) {
-        let block = helper.hex2dec(json.result)
-        console.log(block)
-    }, client.router.currentBlock, "")
+exports.currentBlock = function(callback) {
+    client.send(callback,client.router.currentBlock, "")
 }
 
-function history(address,start,end) {
-    client.send(function (json) {
-        console.log(json)
-    }, client.router.history, address+"/"+start+"/"+end)
+exports.history = function(address,start,end,callback) {
+    client.send(callback,client.router.history, address+"/"+start+"/"+end)
 }
 
 /*var newWallet = newAddress()
@@ -88,8 +79,8 @@ console.log(result)
 console.log(ETH)
 console.log(wei)*/
 
-balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
+/*balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
     console.log(json)
     let ETHBalance = helper.fromWei(json.result)
     console.log(ETHBalance)
-})
+})*/
