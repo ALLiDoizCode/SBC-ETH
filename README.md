@@ -1,4 +1,4 @@
-<a  align="center" href="https://www.secureblockchains.com/"><img src="https://github.com/SecureBlockChains/Assets/blob/master/Anchor.png" title="Boid" alt="Boid"></a>
+<a href="https://www.secureblockchains.com/"><img src="https://github.com/SecureBlockChains/Assets/blob/master/Anchor.png" title="Boid" alt="Boid"></a>
 
 # Boid CLI
 
