@@ -8,14 +8,14 @@
 
 > Address Creation
 
-```shell
+```javascript
 var newWallet = newAddress()
 var oldWallet = importAddress("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e129cad24033194730")
 ```
 
 > Balance
 
-```shell
+```javascript
 balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
     console.log(json)
     let ETHBalance = helper.fromWei(json.result)
@@ -25,13 +25,13 @@ balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
 
 > Payments
 
-```shell
+```javascript
 var tx = payment("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f1e129cad24033194730", "21", "10000000000", "0x92db85f920928429c3e519c3868329fe1fabeffc",1, "1")
 ```
 
 > utility
 
-```code
+```javascript
 var ethAmount = ETH.util.fromWei(1000000000000000000)
 var wei = ETH.util.toWei(1000000000000000000)
 var number = ETH.util.hex2dec(0x531587)
@@ -40,7 +40,7 @@ var hex = ETH.util.decimalToHex(1000000000000000000)
 
 ### Methods
 
-```shell
+```javascript
 newAddress()
 importAddress(private)
 payment(privateKey, gasPrice, gasLimit, to, value, nonce)
