@@ -1,8 +1,8 @@
-<a style="margin-left:20px" href="https://www.secureblockchains.com/"><img src="https://github.com/SecureBlockChains/Assets/blob/master/Anchor.png" title="Boid" alt="Boid"></a>
+<a href="https://www.secureblockchains.com/"><img src="https://github.com/SecureBlockChains/Assets/blob/master/Anchor.png" title="Boid" alt="Boid"></a>
 
-# Boid CLI
+# SBC-ETH
 
-> A linux command line interface for Boid 
+> A Node.js Library for ETH
 
 ### Examples
 
