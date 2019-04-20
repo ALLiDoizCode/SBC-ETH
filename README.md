@@ -4,6 +4,10 @@
 
 > A Node.js Library for ETH
 
+### Install
+
+> npm install sbc-eth
+
 ### Examples
 
 > Address Creation
