@@ -29,7 +29,7 @@ var oldWallet = ETH.importAddress("80135c38779b3f124bf21ccc7ad94d07d60cbc3f81e9f
 
 ```javascript
 const ETH = require('sbc-eth')
-balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
+ETH.balance("0x92db85f920928429c3e519c3868329fe1fabeffc",function (json) {
     console.log(json)
     let ETHBalance = ETH.util.fromWei(json.result)
     console.log(ETHBalance)
@@ -56,13 +56,15 @@ var hex = ETH.util.decimalToHex(1000000000000000000)
 ### Methods
 
 ```javascript
-newAddress()
-importAddress(private)
-payment(privateKey, gasPrice, gasLimit, to, value, nonce)
-submit(tx)
-balance(address,callback)
-transactionCount(address,callback)
-transaction(hash,callback)
-currentBlock(callback)
-history(address,start,end,callback)
+const ETH = require('sbc-eth')
+
+ETH.newAddress()
+ETH.importAddress(private)
+ETH.payment(privateKey, gasPrice, gasLimit, to, value, nonce)
+ETH.submit(tx)
+ETH.balance(address,callback)
+ETH.transactionCount(address,callback)
+ETH.transaction(hash,callback)
+ETH.currentBlock(callback)
+ETH.history(address,start,end,callback)
 ```
